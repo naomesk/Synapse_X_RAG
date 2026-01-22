@@ -37,32 +37,32 @@ This RAG system provides intelligent document querying capabilities with:
 ---
 
 ## 🏗️ System Architecture
-
+```
 ┌─────────────────────────────────────────────────────────┐
-│ Presentation Layer (API) │
-│ main.py → routes.py → query.py / upload.py │
+│ Presentation Layer (API)                                │
+│ main.py → routes.py → query.py / upload.py              │
 └───────────────────────┬─────────────────────────────────┘
-│
+                        │
 ┌───────────────────────▼─────────────────────────────────┐
-│ Business Logic Layer │
-│ rag_engine.py (orchestrates everything) │
+│ Business Logic Layer                                    │
+│ rag_engine.py (orchestrates everything)                 │
 └───────────────────────┬─────────────────────────────────┘
-│
-┌───────────────┴───────────────┐
-│ │
-┌──────────────┐ ┌──────────────┐
-│ database.py │ │ llm.py │
-│ SQLite + │ │ Ollama │
-│ Milvus │ │ │
-└──────────────┘ └──────────────┘
-
+                        │
+        ┌───────────────┴───────────────┐
+        │                               │
+ ┌──────────────┐                 ┌──────────────┐
+ │ database.py  │                 │     llm.py   │
+ │ SQLite +     │                 │    Ollama    │
+ │ Milvus       │                 │              │
+ └──────────────┘                 └──────────────┘
+```
 
 ---
 
 ## 🔗 How Files Work Together
 
 ### Core File Structure
-
+```
 project/
 ├── main.py # 🚀 Entry point - FastAPI app
 ├── config.py # ⚙️ Configuration center
@@ -77,10 +77,10 @@ project/
 ├── security.py # 🔒 Security checks
 ├── logger.py # 📝 Logging setup
 └── gui_layer.py # 🖥️ Streamlit web interface
-
+```
 
 ### File Dependencies
-
+```
 main.py
 ├── config.py
 ├── routes.py
@@ -94,7 +94,7 @@ main.py
 │ └── rag_engine.py
 ├── logger.py
 └── models.py
-
+```
 
 ---
 
@@ -133,7 +133,7 @@ When you run `python main.py`, the following occurs:
 ## 📊 Request Flow
 
 ### Query Request Flow
-
+```
 User → POST /query/query
 → main.py
 → routes.py
@@ -144,10 +144,10 @@ User → POST /query/query
 ├── database.py (Milvus + SQLite)
 └── llm.py (Ollama)
 → Response returned to user
-
+```
 
 ### Upload Request Flow
-
+```
 User → POST /upload/document
 → upload.py
 ├── File validation
@@ -157,7 +157,7 @@ User → POST /upload/document
 ├── Chunking
 ├── Embedding
 └── Store in SQLite + Milvus
-
+```
 
 ---
 
@@ -229,6 +229,7 @@ Start FastAPI Server
 python main.py
 Start Streamlit GUI (Optional)
 streamlit run gui_layer.py
+
 🔌 API Endpoints
 Query
 POST /query/query
@@ -264,6 +265,7 @@ export CHUNK_SIZE=2048
 export SIMILARITY_TOP_K=8
 Default Configuration
 See config.py for full configuration options.
+```
 
 🎯 Key Features
 ✅ Hybrid Database (SQLite + Milvus)
@@ -280,8 +282,10 @@ See config.py for full configuration options.
 
 ✅ Scalable to large document sets
 
+
 📄 License
 This project is part of a Capstone Design Project.
+
 
 👤 Author
 Shalkar
